@@ -17,3 +17,5 @@ group :development do
   gem "sqlite3"
 end
 gem "pg", "~> 1.2"
+
+gem "rake", "~> 13.0"
