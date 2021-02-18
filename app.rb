@@ -4,7 +4,9 @@ require "sinatra/activerecord"
 require "json"
 require "amazing_print"
 
-set :database_file, "./config/database.yml"
+if ENV["RACK_ENV"] != "production"
+  set :database_file, "./config/database.yml"
+end
 
 require_relative "./moves.rb"
 require_relative "./game.rb"
