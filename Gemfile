@@ -14,3 +14,4 @@ gem "sinatra-activerecord", "~> 2.0"
 group :development do
   gem "sqlite3"
 end
+gem "pg", "~> 1.2"
