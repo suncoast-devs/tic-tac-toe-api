@@ -1,0 +1,144 @@
+{
+  "openapi" : "3.0.0",
+  "servers" : [ ],
+  "info" : {
+    "description" : "SDG Tic Tac Toe",
+    "version" : "1.0.0",
+    "title" : "SDG Tic Tac Toe",
+    "contact" : {
+      "email" : "gavin@suncoast.io"
+    },
+    "license" : {
+      "name" : "Apache 2.0",
+      "url" : "http://www.apache.org/licenses/LICENSE-2.0.html"
+    }
+  },
+  "paths" : {
+    "/game" : {
+      "post" : {
+        "summary" : "Creates a new Tic Tac Toe Game",
+        "description" : "This will setup a new game and return an initial board along with a game ID\n",
+        "responses" : {
+          "200" : {
+            "description" : "Game Board",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/GameBoard"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/game/{id}" : {
+      "post" : {
+        "summary" : "Records a player's move",
+        "description" : "Supply the user's move and receive back a board with the user's and the computer's move\n",
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "required" : true,
+          "description" : "Game ID",
+          "schema" : {
+            "type" : "integer"
+          }
+        } ],
+        "requestBody" : {
+          "required" : true,
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "type" : "object",
+                "properties" : {
+                  "row" : {
+                    "type" : "integer",
+                    "description" : "0 based row index for player's move"
+                  },
+                  "column" : {
+                    "type" : "integer",
+                    "description" : "0 based row index for player's move"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses" : {
+          "200" : {
+            "description" : "Game Board",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/GameBoard"
+                }
+              }
+            }
+          },
+          "404" : {
+            "description" : "Game ID not found"
+          },
+          "400" : {
+            "description" : "User's move is invalid"
+          }
+        }
+      },
+      "get" : {
+        "summary" : "Get the state of a current game",
+        "description" : "Retrieves the current state of a game\n",
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "required" : true,
+          "description" : "Game ID",
+          "schema" : {
+            "type" : "integer"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Game Board",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/GameBoard"
+                }
+              }
+            }
+          },
+          "404" : {
+            "description" : "Game ID not found"
+          }
+        }
+      }
+    }
+  },
+  "components" : {
+    "schemas" : {
+      "GameBoard" : {
+        "type" : "object",
+        "properties" : {
+          "id" : {
+            "type" : "number",
+            "description" : "Game board identifier",
+            "example" : 42
+          },
+          "winner" : {
+            "type" : "string",
+            "description" : "Winner (X or O or TIE)",
+            "example" : "X"
+          },
+          "board" : {
+            "type" : "array",
+            "items" : {
+              "type" : "object"
+            },
+            "example" : "[ [ \" \", \" \", \" \" ],     [ \" \", \" \", \" \" ],      [ \" \", \" \", \" \" ] ]\n",
+            "description" : "3x3 array of either a \" \" (no move), \"X\", or \"O\""
+          }
+        }
+      }
+    }
+  }
+}

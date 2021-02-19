@@ -31,6 +31,10 @@ end
 require_relative "./moves.rb"
 require_relative "./game.rb"
 
+get "/" do
+  send_file File.join(settings.public_folder, 'docs.html')
+end
+
 post "/game" do
   game = Game.new_game
 
