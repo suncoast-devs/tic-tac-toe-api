@@ -31,6 +31,7 @@ class Game < ActiveRecord::Base
   def check_win
     self.winner = "X" if WINNING_SPACES.any? { |spaces| spaces.all? { |row, col| self.board[row][col] == "X" } }
     self.winner = "O" if WINNING_SPACES.any? { |spaces| spaces.all? { |row, col| self.board[row][col] == "O" } }
+    self.winner = "TIE" if self.winner.nil? && self.board.count(' ') == 0
   end
 
   def human_move(row, column)
