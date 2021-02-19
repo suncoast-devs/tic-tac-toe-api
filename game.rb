@@ -44,7 +44,7 @@ class Game < ActiveRecord::Base
 
     computer_move = GAME_MOVES.find { |move, boards| boards.include?(self.board) }
 
-    return :invalid unless computer_move
+    return :valid unless computer_move
 
     computer_row = computer_move[0][:row]
     computer_col = computer_move[0][:col]
