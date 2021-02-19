@@ -14,7 +14,7 @@ ActiveRecord::Schema.define(version: 2021_02_18_222301) do
 
   create_table "games", force: :cascade do |t|
     t.text "board"
-    t.string "winner", limit: 1
+    t.string "winner", limit: 3
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
