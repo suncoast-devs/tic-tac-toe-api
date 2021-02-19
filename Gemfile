@@ -19,3 +19,5 @@ end
 gem "pg", "~> 1.2"
 
 gem "rake", "~> 13.0"
+
+gem "sinatra-cross_origin", "~> 0.4.0"
