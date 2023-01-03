@@ -1,15 +1,22 @@
 require "sinatra"
 require "sinatra/json"
-require "sinatra/activerecord"
+require "active_record"
 require "json"
 require "amazing_print"
 
-if ENV["PORT"]
-  set :port, ENV["PORT"]
-end
+set(:port, ENV["PORT"]) if ENV["PORT"]
 
-if ENV["RACK_ENV"] != "production"
-  set :database_file, "./config/database.yml"
+ActiveRecord::Base.establish_connection(
+  adapter: 'sqlite3',
+  database: 'db.sqlite3',
+)
+
+ActiveRecord::Schema.define do
+  create_table :games do |t|
+    t.text :board
+    t.string :winner, limit: 3
+    t.timestamps
+  end
 end
 
 configure do

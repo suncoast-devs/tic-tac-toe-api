@@ -20,7 +20,6 @@ GEM
     multi_json (1.15.0)
     mustermann (1.1.1)
       ruby2_keywords (~> 0.0.1)
-    pg (1.2.3)
     rack (2.2.3)
     rack-contrib (2.3.0)
       rack (~> 2.0)
@@ -33,9 +32,6 @@ GEM
       rack (~> 2.2)
       rack-protection (= 2.1.0)
       tilt (~> 2.0)
-    sinatra-activerecord (2.0.22)
-      activerecord (>= 4.1)
-      sinatra (>= 1.0)
     sinatra-contrib (2.1.0)
       multi_json
       mustermann (~> 1.0)
@@ -55,17 +51,15 @@ PLATFORMS
 DEPENDENCIES
   activerecord (~> 6.1)
   amazing_print (~> 1.2)
-  pg (~> 1.2)
   rack-contrib (~> 2.3)
   rake (~> 13.0)
   sinatra (~> 2.1)
-  sinatra-activerecord (~> 2.0)
   sinatra-contrib (~> 2.1)
   sinatra-cross_origin (~> 0.4.0)
   sqlite3
 
 RUBY VERSION
-   ruby 2.6.6p146
+   ruby 2.7.7p221
 
 BUNDLED WITH
    2.1.4
