@@ -1,3 +1,5 @@
+require "active_record"
+
 EMPTY_BOARD = [
   [" ", " ", " "],
   [" ", " ", " "],
@@ -20,6 +22,19 @@ WINNING_SPACES =
     [[0, 0], [1, 1], [2, 2]],
     [[0, 2], [1, 1], [2, 0]],
   ]
+
+ActiveRecord::Base.establish_connection(
+  adapter: 'sqlite3',
+  database: 'db.sqlite3'
+)
+
+ActiveRecord::Schema.define do
+  create_table :games do |t|
+    t.text :board
+    t.string :winner, limit: 3
+    t.timestamps
+  end
+end
 
 class Game < ActiveRecord::Base
   serialize :board, Array

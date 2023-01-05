@@ -1,23 +1,9 @@
 require "sinatra"
 require "sinatra/json"
-require "active_record"
 require "json"
 require "amazing_print"
 
 set(:port, ENV["PORT"]) if ENV["PORT"]
-
-ActiveRecord::Base.establish_connection(
-  adapter: 'sqlite3',
-  database: 'db.sqlite3',
-)
-
-ActiveRecord::Schema.define do
-  create_table :games do |t|
-    t.text :board
-    t.string :winner, limit: 3
-    t.timestamps
-  end
-end
 
 configure do
   enable :cross_origin
